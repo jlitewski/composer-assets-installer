@@ -2,19 +2,26 @@
     "name": "reputation-vip/composer-assets-installer",
     "license": "MIT",
     "type": "composer-plugin",
+    "description": "Composer Assets Installer provides a fast and easy way to copy the assets of your Composer packages into your public folder. You only have to chose one or multiple asset directories of the target in your \"composer.json\" file.",
     "authors": [
         {
             "name": "Alban Pommeret",
-            "email": "ap@reputationvip.com"
+            "email": "ap@reputationvip.com",
+            "role": "Package Founder"
+        },
+        {
+            "name": "Jacob Litewski",
+            "email": "jacob.litewski@gmail.com",
+            "role": "Package Maintainer"
         }
     ],
     "require": {
-        "composer-plugin-api": "~1.0",
-        "symfony/filesystem": "^3.0"
+        "composer-plugin-api": "~2.0",
+        "symfony/filesystem": "^3.0 | ^4.0"
     },
     "require-dev": {
-        "composer/composer": "^1.4",
-        "phpunit/phpunit": "~4.4"
+        "composer/composer": "^1.0 | ^2.0",
+        "phpunit/phpunit": "~9.5"
     },
     "autoload": {
         "psr-4": {

@@ -18,7 +18,7 @@ class AssetsInstallerPlugin implements PluginInterface, EventSubscriberInterface
     private $assetsInstaller;
 
     /**
-     * Initializes the plugin
+     * Activates the plugin
      * Reads the composer.json file and
      * retrieves the assets-dir set if any.
      * This assets-dir is the path where
@@ -29,6 +29,30 @@ class AssetsInstallerPlugin implements PluginInterface, EventSubscriberInterface
     public function activate(Composer $composer, IOInterface $io)
     {
         $this->assetsInstaller = new AssetsInstaller($composer, $io);
+    }
+
+    /**
+     * Deactivates the plugin
+     * 
+     * @param Composer $composer
+     * @param IOInterface $io
+     */
+    public function deactivate(Composer $composer, IOInterface $io)
+    {
+        //TODO: Need to implement a way to deactivate the plugin
+        //$this->assetsInstaller = new AssetsInstaller($composer, $io);
+    }
+
+    /**
+     * Uninstalls the plugin
+     * 
+     * @param Composer $composer
+     * @param IOInterface $io
+     */
+    public function uninstall(Composer $composer, IOInterface $io)
+    {
+        //TODO: Need to implement a way to uninstall this plugin
+        //$this->assetsInstaller = new AssetsInstaller($composer, $io);
     }
 
     public static function getSubscribedEvents()

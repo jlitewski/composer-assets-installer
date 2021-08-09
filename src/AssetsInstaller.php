@@ -172,13 +172,15 @@ class AssetsInstaller
         // We get the target dir of the iterated package
         $targetDir = $package->getTarget();
         $jsonPath = $vendorPath . $targetDir . "/composer.json";
-        if (method_exists($package, 'getJsonFile')) {
+
+        // @codeCoverageIgnoreStart
+         if (method_exists($package, 'getJsonFile')) {
+             //This throws an error in VSC, but it should work so...
             $jsonFile = $package->getJsonFile($jsonPath);
         } else {
-            // @codeCoverageIgnoreStart
             $jsonFile = new JsonFile($jsonPath);
-            // @codeCoverageIgnoreEnd
         }
+        // @codeCoverageIgnoreEnd
 
         return $this->fs->exists($jsonPath) ? $jsonFile->read() : null;
     }
