@@ -16,7 +16,10 @@ use Composer\Composer;
 use Composer\Json\JsonFile;
 use Composer\IO\IOInterface;
 use Composer\Package;
+
 use Symfony\Component\Filesystem\Filesystem;
+
+use ReputationVIP\Composer\Util\DirectoryHandler;
 
 class AssetsInstaller
 {
@@ -173,14 +176,24 @@ class AssetsInstaller
         $targetDir = $package->getTarget();
         $jsonPath = $vendorPath . $targetDir . "/composer.json";
 
-        // @codeCoverageIgnoreStart
-         if (method_exists($package, 'getJsonFile')) {
-             //This throws an error in VSC, but it should work so...
+        /** 
+         * This tiny bit of fuckery here is to make sure that the tests pass, because there is
+         * no good way to do so otherwise, and without rewriting a good chunk of the plugin
+         * to make the test happy
+         * 
+         * Basically, the test version of the package has a "getJsonFile" method injected into it,
+         * which triggers this piece of code to run and use a mocked filesystem class.
+         * Otherwise, it'll use the normal filesystem class to do it's dirty work
+         * 
+         * This is such a stupid piece of code that I want to rewrite it to not be this,
+         * but my PHP is not good enough yet to tackle it, plus I'm on company time and I doubt
+         * my boss would like me to spend a lot of time "fixing" a simple fix
+        */
+        if (method_exists($package, 'getJsonFile')) {
             $jsonFile = $package->getJsonFile($jsonPath);
         } else {
             $jsonFile = new JsonFile($jsonPath);
         }
-        // @codeCoverageIgnoreEnd
 
         return $this->fs->exists($jsonPath) ? $jsonFile->read() : null;
     }
