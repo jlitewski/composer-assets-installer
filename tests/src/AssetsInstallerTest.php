@@ -13,7 +13,7 @@ use ReputationVIP\Composer\AssetsInstaller;
 use Composer\Config;
 use Composer\IO\NullIO;
 use Composer\Package;
-use PHPUnit\Framework;
+use PHPUnit\Framework\TestCase;
 
 class AssetsInstallerTest extends TestCase
 {
