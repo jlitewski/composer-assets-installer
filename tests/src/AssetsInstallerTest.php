@@ -13,8 +13,9 @@ use ReputationVIP\Composer\AssetsInstaller;
 use Composer\Config;
 use Composer\IO\NullIO;
 use Composer\Package;
+use PHPUnit\Framework;
 
-class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
+class AssetsInstallerTest extends TestCase
 {
     const NS_DEFAULT = 'default';
 
