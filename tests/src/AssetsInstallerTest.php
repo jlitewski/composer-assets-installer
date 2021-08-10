@@ -10,9 +10,8 @@
  */
 
 use ReputationVIP\Composer\AssetsInstaller;
-use Composer\Config;
+use Composer\Json\JsonFile;
 use Composer\IO\NullIO;
-use Composer\Package;
 use PHPUnit\Framework\TestCase;
 
 class AssetsInstallerTest extends TestCase
@@ -235,7 +234,7 @@ class AssetsInstallerTest extends TestCase
         $mockPackageData = $this->mockPackage[$packageNs];
 
         //$jsonFileReader = $this->getMock('JsonFile', array('read'));
-        $jsonFileReader = $this->getMockBuilder("Composer/Json/JsonFile")
+        $jsonFileReader = $this->getMockBuilder("Composer\Json\JsonFile")
             ->addMethods(['read'])
             ->getMock();
         $jsonFileReader->expects($this->any())
@@ -243,7 +242,7 @@ class AssetsInstallerTest extends TestCase
             ->will($this->returnValue($mockPackageData['jsonFile']));
 
         //$package = $this->getMock('Package', array('getExtra', 'getName', 'getRequires', 'getTarget'));
-        $package = $this->getMockBuilder("Composer/Package/Package")
+        $package = $this->getMockBuilder("Composer\Package\Package")
             ->addMethods(['getExtra', 'getName', 'getRequires', 'getTarget'])
             ->getMock();
         $package->expects($this->any())
@@ -268,7 +267,7 @@ class AssetsInstallerTest extends TestCase
     {
         $mockPackageData = $this->mockPackage[$packageNs];
         //$installationManager = $this->getMock('InstallationManager', array('getInstallPath'));
-        $installationManager = $this->getMockBuilder("Composer/Installer/InstallationManager")
+        $installationManager = $this->getMockBuilder("Composer\Installer\InstallationManager")
             ->addMethods(['getInstallPath'])
             ->getMock();
         $installationManager->expects($this->any())
@@ -277,7 +276,7 @@ class AssetsInstallerTest extends TestCase
             ->will($this->returnValue($mockPackageData['installPath']));
 
         //$composer = $this->getMock('Composer', array('getPackage', 'getInstallationManager'));
-        $composer = $this->getMockBuilder('Composer/Composer')
+        $composer = $this->getMockBuilder('Composer\Composer')
             ->addMethods(['getPackage', 'getInstallationManager'])
             ->getMock();
         $composer->expects($this->any())
@@ -293,7 +292,7 @@ class AssetsInstallerTest extends TestCase
     {
         $directoryHandlerData = $this->mockDirectoryHandler[$directoryHandlerNs];
         //$directoryHandler = $this->getMock('DirectoryHandler', array('isDirectory', 'copyDirectory', 'deleteDirectory'));
-        $directoryHandler = $this->getMockBuilder('ReputationVIP/Composer/DirectoryHandler')
+        $directoryHandler = $this->getMockBuilder('ReputationVIP\Composer\DirectoryHandler')
             ->addMethods(['isDirectory', 'copyDirectory', 'deleteDirectory'])
             ->getMock();
         $directoryHandler->expects($this->any())
@@ -320,7 +319,7 @@ class AssetsInstallerTest extends TestCase
     private function getMockPackageLink($mockLinkData)
     {
         //$jsonFileReader = $this->getMock('JsonFile', array('read'));
-        $jsonFileReader = $this->getMockBuilder("Composer/Json/JsonFile")
+        $jsonFileReader = $this->getMockBuilder("Composer\Json\JsonFile")
             ->addMethods(['read'])
             ->getMock();
         $jsonFileReader->expects($this->any())
@@ -328,7 +327,7 @@ class AssetsInstallerTest extends TestCase
             ->will($this->returnValue($mockLinkData['jsonFile']));
 
         //$link = $this->getMock('Link', array('getTarget', 'getJsonFile'));
-        $link = $this->getMockBuilder('Composer/Package/Link')
+        $link = $this->getMockBuilder('Composer\Package\Link')
             ->addMethods(['getTarget', 'getJsonFile'])
             ->getMock();
         $link->expects($this->any())
