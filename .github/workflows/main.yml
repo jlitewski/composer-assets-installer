@@ -31,4 +31,4 @@ jobs:
       # Run PHPUnit tests to make sure things don't break
       - uses: php-actions/phpunit@v3
         with:
-          configuration: "test/phpunit.xml"
+          configuration: "tests/phpunit.xml"
